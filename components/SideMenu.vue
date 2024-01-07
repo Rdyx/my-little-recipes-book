@@ -1,25 +1,16 @@
 <script setup lang="ts">
 const props = defineProps({
-  isOpen: Boolean,
-  isSettingsMenuOpen: Boolean
+  isOpen: Boolean
 })
-const emit = defineEmits(['openSettingsMenu', 'close'])
-
-function closeSideMenu() {
-  if (props.isSettingsMenuOpen) return
-  emit('close', false)
-}
+const emit = defineEmits(['close'])
 </script>
 
 <template>
   <div>
-    <USlideover
-      :model-value="props.isOpen"
-      @open-settings-menu="emit('openSettingsMenu', true)"
-      @close="closeSideMenu()"
-    >
+    <USlideover :model-value="props.isOpen" @close="emit('close')">
       <div class="p-4">
-        <slot></slot>
+        <slot name="header" />
+        <slot />
       </div>
     </USlideover>
   </div>

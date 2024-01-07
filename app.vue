@@ -1,23 +1,27 @@
 <script setup>
 const isLinksMenuOpen = ref(false)
 const isSettingsMenuOpen = ref(false)
+
+const closeLinksMenu = () => {
+  if (isSettingsMenuOpen.value) return
+  isLinksMenuOpen.value = false
+}
+
+const closeSettingsMenu = () => {
+  isSettingsMenuOpen.value = false
+}
 </script>
 
 <template>
   <div>
     <NavBar @open-links-menu="isLinksMenuOpen = true" />
-    <SideMenu :is-open="isSettingsMenuOpen" @close="isSettingsMenuOpen = false">
-      <SettingsMenu @close="isSettingsMenuOpen = false" />
-    </SideMenu>
-    <SideMenu
-      :is-open="isLinksMenuOpen"
-      :is-settings-menu-open="isSettingsMenuOpen"
-      @close="isLinksMenuOpen = false"
-    >
-      <LinksMenu @open-settings-menu="isSettingsMenuOpen = true" @close="isLinksMenuOpen = false" />
-    </SideMenu>
 
-    <NuxtLink to="/"> Home </NuxtLink>
+    <LinksMenu
+      :is-open="isLinksMenuOpen"
+      @open-settings-menu="isSettingsMenuOpen = true"
+      @close="closeLinksMenu()"
+    />
+    <SettingsMenu :is-open="isSettingsMenuOpen" @close="closeSettingsMenu()" />
 
     <NuxtPage />
   </div>

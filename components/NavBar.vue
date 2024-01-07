@@ -4,7 +4,9 @@ const emit = defineEmits(['openLinksMenu'])
 
 <template>
   <div class="ps-4 pe-3 h-14 flex justify-between items-center">
-    <span>logo</span>
+    <nuxt-link to="/">
+      <span>logo</span>
+    </nuxt-link>
 
     <div class="">
       <!-- <UButton
