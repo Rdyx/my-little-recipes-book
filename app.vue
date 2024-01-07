@@ -1,11 +1,5 @@
 <script setup>
-const isLinksMenuOpen = ref(false)
 const isSettingsMenuOpen = ref(false)
-
-const closeLinksMenu = () => {
-  if (isSettingsMenuOpen.value) return
-  isLinksMenuOpen.value = false
-}
 
 const closeSettingsMenu = () => {
   isSettingsMenuOpen.value = false
@@ -14,18 +8,16 @@ const closeSettingsMenu = () => {
 
 <template>
   <div>
-    <NavBar @open-links-menu="isLinksMenuOpen = true" />
-
-    <LinksMenu
-      :is-open="isLinksMenuOpen"
-      @open-settings-menu="isSettingsMenuOpen = true"
-      @close="closeLinksMenu()"
-    />
+    <NavBar @open-settings-menu="isSettingsMenuOpen = true" />
     <SettingsMenu :is-open="isSettingsMenuOpen" @close="closeSettingsMenu()" />
-    <UNotifications />
 
+    <!-- Toasts -->
+    <UNotifications />
+    <!-- PWA Related -->
     <NuxtPwaManifest />
     <PWA />
+
+    <!-- Page Content -->
     <NuxtPage />
   </div>
 </template>

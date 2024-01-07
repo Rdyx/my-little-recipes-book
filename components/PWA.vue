@@ -1,25 +1,21 @@
-<script setup>
-// If you want to use it in setup, import from the nuxtApp.
+<script setup lang="ts">
 const { $pwa } = useNuxtApp()
 
 const toast = useToast()
+const show = ref($pwa?.needRefresh)
 
 onMounted(() => {
-  // eslint-disable-next-line no-console
-  console.log($pwa, $pwa.offlineReady)
-  // toast.add({ title: 'test' })
-  if ($pwa.offlineReady) toast.add({ title: 'App ready to work offline' })
-  if ($pwa.needRefresh) {
-    toast.add({ title: 'refresh' })
-  }
+  if ($pwa?.offlineReady) toast.add({ title: 'App ready to work offline' })
 })
 </script>
 
 <template>
-  <div v-show="$pwa.needRefresh">
-    <!-- You can use $pwa directly in templates! -->
-    <span> New content available, click on reload button to update. </span>
-
-    <button @click="$pwa.updateServiceWorker()">Reload</button>
+  <div>
+    <UModal v-model="show" :ui="{ width: 'w-full sm:max-w-xs' }" prevent-close>
+      <UContainer class="h-32 p-4 flex flex-col justify-evenly items-center">
+        <span>New update available.</span>
+        <UButton label="Reload" class="my-2" @click="$pwa?.updateServiceWorker()" />
+      </UContainer>
+    </UModal>
   </div>
 </template>

@@ -2,14 +2,17 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/ui', '@nuxt/test-utils/module', '@vite-pwa/nuxt'],
+  ui: {
+    icons: ['heroicons', 'material-symbols']
+  },
   typescript: {
     typeCheck: true,
     strict: true
   },
   pwa: {
     manifest: {
-      name: 'Nuxt Vite PWA',
-      short_name: 'NuxtVitePWA',
+      name: 'My Little Recipes Book',
+      short_name: 'MLRB',
       theme_color: '#ffffff',
       icons: [
         {

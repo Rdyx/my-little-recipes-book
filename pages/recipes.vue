@@ -1,4 +1,6 @@
 <template>
-  {{ $route.params }}
-  Recipes list
+  <div>
+    {{ $route.params }}
+    Recipes list
+  </div>
 </template>
