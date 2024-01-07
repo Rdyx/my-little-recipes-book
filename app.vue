@@ -24,7 +24,7 @@ const closeSettingsMenu = () => {
     <SettingsMenu :is-open="isSettingsMenuOpen" @close="closeSettingsMenu()" />
     <UNotifications />
 
-    <VitePwaManifest />
+    <NuxtPwaManifest />
     <PWA />
     <NuxtPage />
   </div>
