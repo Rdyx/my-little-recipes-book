@@ -1,3 +1,3 @@
-import slugify from "slugify";
+import slugify from 'slugify'
 
-export const getSlug = (str: string) => slugify(str, { lower: true });
+export const getSlug = (str: string) => slugify(str, { lower: true })

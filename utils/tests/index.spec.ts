@@ -1,7 +1,7 @@
-import { expect, test } from "vitest";
+import { expect, test } from 'vitest'
 
 // Example UT
-test("test slug", () => {
-  const expectedSlug = "test-test";
-  expect(getSlug("Test Test")).toBe(expectedSlug);
-});
+test('test slug', () => {
+  const expectedSlug = 'test-test'
+  expect(getSlug('Test Test')).toBe(expectedSlug)
+})
