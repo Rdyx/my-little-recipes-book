@@ -6,6 +6,12 @@ const emit = defineEmits(['close'])
 const darkModeEnabled = ref(true)
 const fontSize = ref(12)
 
+const exportData = () => {
+  console.log('export')
+}
+const importData = () => {
+  console.log('import')
+}
 const saveSettings = () => {
   console.log('save')
   emit('close')
@@ -31,11 +37,26 @@ const saveSettings = () => {
         <URange v-model="fontSize" :min="8" :max="20" size="2xs" />
       </SettingsSMenuItem>
 
-      <div class="my-2 flex flex-row justify-between">
-        <UButton icon="i-heroicons-pencil-square" color="gray" class="w-1/2" label="test" gap="xl">
-        </UButton>
-        <UButton icon="i-heroicons-pencil-square">Import Data</UButton>
-      </div>
+      <SettingsSMenuItem
+        title="Data"
+        icon="i-material-symbols-home-storage-outline-rounded"
+        slot-width="w-full"
+      >
+        <div class="flex flex-row gap-2">
+          <UButton
+            icon="i-material-symbols-upload-rounded"
+            color="white"
+            label="Export"
+            @click="exportData()"
+          />
+          <UButton
+            icon="i-material-symbols-download-rounded"
+            color="white"
+            label="Import"
+            @click="importData()"
+          />
+        </div>
+      </SettingsSMenuItem>
 
       <template #footer>
         <div class="flex justify-end gap-6">

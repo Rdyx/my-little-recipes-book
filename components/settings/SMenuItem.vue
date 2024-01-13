@@ -3,6 +3,7 @@ type Props = {
   title: string
   icon?: string
   class?: string
+  slotWidth?: string
 }
 const props = defineProps<Props>()
 </script>
@@ -14,7 +15,7 @@ const props = defineProps<Props>()
         <UIcon v-if="props.icon" :name="props.icon" />
         <span>{{ props.title }}</span>
       </div>
-      <div class="w-1/2 flex justify-end">
+      <div :class="`${props.slotWidth ?? 'w-1/2'} flex justify-end`">
         <slot />
       </div>
     </div>
