@@ -8,14 +8,15 @@ const closeSettingsMenu = () => {
 
 <template>
   <div>
-    <NavBar @open-settings-menu="isSettingsMenuOpen = true" />
-    <SettingsMenu :is-open="isSettingsMenuOpen" @close="closeSettingsMenu()" />
+    <CoreNavBar @open-settings-menu="isSettingsMenuOpen = true" />
+    <SettingsSMenu :is-open="isSettingsMenuOpen" @close="closeSettingsMenu()" />
 
     <!-- Toasts -->
     <UNotifications />
+
     <!-- PWA Related -->
     <NuxtPwaManifest />
-    <PWA />
+    <CorePWA />
 
     <!-- Page Content -->
     <NuxtPage />

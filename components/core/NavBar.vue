@@ -49,8 +49,17 @@ const links = [
       <span>logo</span>
     </NuxtLink>
 
-    <UDropdown :items="links" :popper="{ placement: 'bottom-start' }">
+    <UDropdown :items="links" :ui="{ item: { disabled: '' } }">
       <UButton icon="i-heroicons-list-bullet-16-solid" class="-my-1" />
+
+      <template #item="{ item }">
+        <span class="truncate">{{ item.label }}</span>
+
+        <UIcon
+          :name="item.icon"
+          class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto"
+        />
+      </template>
     </UDropdown>
   </div>
 </template>
