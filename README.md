@@ -5,7 +5,8 @@
 - [Nuxt-UI](https://ui.nuxt.com/getting-started)
 - [Icons](https://icones.js.org/)
 - [Dexie.js](https://dexie.org/docs/Tutorial/Getting-started) (IndexDB Wrapper)
-- [Tailwind CSS](https://tailwindcss.com/docs/installation) (IndexDB Wrapper)
+- [RxJS](https://rxjs-dev.firebaseapp.com/guide/overview)
+- [Tailwind CSS](https://tailwindcss.com/docs/installation)
 - [Zipson](https://jgranstrom.github.io/zipson/) (Data compression for data export/import)
 
 # Nuxt 3 Minimal Starter

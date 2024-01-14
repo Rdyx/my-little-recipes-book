@@ -2,6 +2,21 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/ui', '@nuxt/test-utils/module', '@vite-pwa/nuxt'],
+  build: {
+    transpile: ['rxjs']
+  },
+  imports: {
+    presets: [
+      {
+        from: '@vueuse/rxjs',
+        imports: ['useObservable', 'from']
+      },
+      {
+        from: 'dexie',
+        imports: ['liveQuery']
+      }
+    ]
+  },
   ui: {
     icons: ['heroicons', 'material-symbols']
   },

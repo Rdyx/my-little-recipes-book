@@ -43,6 +43,9 @@
   },
   "dependencies": {
     "@nuxt/ui": "^2.11.1",
+    "@vueuse/rxjs": "^10.7.1",
+    "dexie": "^3.2.4",
+    "rxjs": "^7.8.1",
     "slugify": "^1.6.6",
     "zipson": "^0.2.12"
   },
