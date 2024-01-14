@@ -1,12 +1,11 @@
 <script setup lang="ts">
-const x = getTableData('ingredients')
-db.ingredients.add({ name: 'test' })
+const x = queryTableData(db.ingredients.where('name').startsWith('test'))
 </script>
 
 <template>
   <div>
     <ul>
-      <li v-for="ingredient in x" :key="ingredient.id">
+      <li v-for="ingredient in x" :key="ingredient.name">
         {{ ingredient.name }}
       </li>
     </ul>

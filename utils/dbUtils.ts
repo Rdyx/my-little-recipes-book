@@ -1,6 +1,6 @@
-import type { Table } from 'dexie'
+import type { Collection, Table } from 'dexie'
 
-export const getTableData = (tableName: keyof typeof db) => {
-  // Cast type to prevent TS error
-  return useObservable(from(liveQuery(() => (db[tableName] as Table).toArray())))
+// Simple function to avoid the whole useObservable(...) stuff when querying db
+export const queryTableData = <T>(table: Table<T> | Collection<T>) => {
+  return useObservable(from(liveQuery(() => table.toArray())))
 }

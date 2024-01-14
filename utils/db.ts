@@ -2,6 +2,7 @@ import Dexie, { type Table } from 'dexie'
 
 export type Ingredients = {
   name: string
+  quantity: number
 }
 
 class MlrbDB extends Dexie {
