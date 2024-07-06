@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const isMenuOpen = ref(false)
+
 const emit = defineEmits(['openSettingsMenu'])
 
 const links = [
@@ -41,6 +43,7 @@ const links = [
     }
   ]
 ]
+console.log(isMenuOpen)
 </script>
 
 <template>
@@ -49,12 +52,15 @@ const links = [
       <span>logo</span>
     </NuxtLink>
 
-    <UDropdown :items="links" :ui="{ item: { disabled: '' } }">
-      <UButton icon="i-heroicons-list-bullet-16-solid" class="-my-1" />
+    <UDropdown v-model:open="isMenuOpen" :items="links">
+      <UButton
+        icon="i-heroicons-list-bullet-16-solid"
+        class="-my-1"
+        :color="isMenuOpen ? 'green' : 'white'"
+      />
 
       <template #item="{ item }">
         <span class="truncate">{{ item.label }}</span>
-
         <UIcon
           :name="item.icon"
           class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto"

@@ -3,10 +3,10 @@ const x = queryTableData(db.ingredients.where('name').startsWith('test'))
 </script>
 
 <template>
-  <div>
+  <div v-auto-animate>
     <ul>
-      <li v-for="ingredient in x" :key="ingredient.name">
-        {{ ingredient.name }}
+      <li v-for="ingredient in x" :key="ingredient?.name">
+        {{ ingredient }}
       </li>
     </ul>
   </div>

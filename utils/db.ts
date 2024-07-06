@@ -1,8 +1,8 @@
 import Dexie, { type Table } from 'dexie'
+import('dexie-export-import')
 
 export type Ingredients = {
   name: string
-  quantity: number
 }
 
 class MlrbDB extends Dexie {

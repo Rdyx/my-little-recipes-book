@@ -6,8 +6,15 @@ const emit = defineEmits(['close'])
 const darkModeEnabled = ref(true)
 const fontSize = ref(12)
 
-const exportData = () => {
+const exportData = async () => {
   console.log('export')
+  try {
+    const blob = await db.export({ prettyJson: true })
+    console.log(blob)
+    // download(blob, "dexie-export.json", "application/json");
+  } catch (error) {
+    console.error('' + error)
+  }
 }
 const importData = () => {
   console.log('import')
@@ -21,23 +28,23 @@ const saveSettings = () => {
 <template>
   <div>
     <CoreSideMenu :is-open="props.isOpen" title="Settings" @close="emit('close')">
-      <SettingsSMenuItem title="Dark Mode" icon="i-heroicons-moon">
+      <SettingsMenuItem title="Dark Mode" icon="i-heroicons-moon">
         <UToggle
           :model-value="!darkModeEnabled"
           off-icon="i-heroicons-moon-solid"
           on-icon="i-heroicons-sun-solid"
           @click="darkModeEnabled = !darkModeEnabled"
         />
-      </SettingsSMenuItem>
+      </SettingsMenuItem>
 
-      <SettingsSMenuItem
+      <SettingsMenuItem
         :title="`Font Size (${fontSize}px)`"
         icon="i-material-symbols-format-size-rounded"
       >
         <URange v-model="fontSize" :min="8" :max="20" size="2xs" />
-      </SettingsSMenuItem>
+      </SettingsMenuItem>
 
-      <SettingsSMenuItem
+      <SettingsMenuItem
         title="Data"
         icon="i-material-symbols-home-storage-outline-rounded"
         slot-width="w-full"
@@ -56,7 +63,7 @@ const saveSettings = () => {
             @click="importData()"
           />
         </div>
-      </SettingsSMenuItem>
+      </SettingsMenuItem>
 
       <template #footer>
         <div class="flex justify-end gap-6">

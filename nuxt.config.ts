@@ -1,10 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@nuxt/test-utils/module', '@vite-pwa/nuxt'],
+  modules: ['@nuxt/ui', '@nuxt/test-utils/module', '@vite-pwa/nuxt', '@formkit/auto-animate'],
+
   build: {
     transpile: ['rxjs']
   },
+
   imports: {
     presets: [
       {
@@ -17,13 +19,16 @@ export default defineNuxtConfig({
       }
     ]
   },
+
   ui: {
     icons: ['heroicons', 'material-symbols']
   },
+
   typescript: {
     typeCheck: true,
     strict: true
   },
+
   pwa: {
     manifest: {
       name: 'My Little Recipes Book',
@@ -57,8 +62,11 @@ export default defineNuxtConfig({
     devOptions: {
       enabled: true,
       suppressWarnings: true,
+      navigateFallback: '/',
       navigateFallbackAllowlist: [/^\/$/],
       type: 'module'
     }
-  }
+  },
+
+  compatibilityDate: '2024-07-06'
 })
