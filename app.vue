@@ -15,8 +15,8 @@ const isSettingsMenuOpen = ref(false)
     <CorePWA />
 
     <!-- Page Content -->
-    <div class="flex justify-center">
-      <NuxtPage class="px-3 md:px-0 md:w-3/4" />
+    <div class="flex justify-center w-full">
+      <NuxtPage class="px-3 w-full md:px-0 md:w-3/4" />
     </div>
   </div>
 </template>

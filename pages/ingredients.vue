@@ -10,9 +10,10 @@ let ingredientsList = allIngredientsList
 
 const placeholder = 'Search an ingredient...'
 
-const filter = async (value: string = '') => {
-  if (searchInputValue.value === 'All') {
-    searchInputValue.value = ''
+const filterIngredients = async (value: string = '') => {
+  searchInputValue.value = value
+
+  if (value === '') {
     ingredientsList = allIngredientsList
   } else {
     ingredientsList = useObservable(
@@ -20,19 +21,16 @@ const filter = async (value: string = '') => {
     )
   }
 }
-
-// const showSearchInput = (show: boolean) => {}
 </script>
 
 <template>
   <div v-auto-animate>
-    <div class="flex w-full justify-between mb-3">
+    <div class="flex w-full justify-between mb-2">
       <span class="text-3xl">Ingredients</span>
-
-      <div class="">
+      <div>
         <UButton
           icon="i-heroicons-magnifying-glass-20-solid"
-          :color="showSearchInput ? 'green' : searchInputValue ? 'sky' : 'white'"
+          :color="showSearchInput ? 'primary' : searchInputValue ? 'sky' : 'white'"
           @click="
             () => {
               showSearchInput = !showSearchInput
@@ -44,7 +42,7 @@ const filter = async (value: string = '') => {
         <UButton
           class="ml-2"
           icon="i-heroicons-plus-20-solid"
-          :color="showAddInput ? 'green' : 'white'"
+          :color="showAddInput ? 'primary' : 'white'"
           @click="
             () => {
               showAddInput = !showAddInput
@@ -57,30 +55,42 @@ const filter = async (value: string = '') => {
     </div>
 
     <!-- Search Input -->
-    <USelectMenu
+    <UButtonGroup
       v-if="showSearchInput"
-      class="mb-3"
-      icon="i-heroicons-magnifying-glass-20-solid"
-      searchable
+      class="w-full mb-2"
+      orientation="horizontal"
       v-model="searchInputValue"
-      :placeholder="placeholder"
-      :searchable-placeholder="placeholder"
-      :options="['All'].concat(allIngredientsList?.map((ingredient) => ingredient.name) ?? [])"
-      @update:model-value="filter(searchInputValue)"
-    />
+    >
+      <USelectMenu
+        class="w-full"
+        searchable
+        trailing
+        v-model="searchInputValue"
+        :placeholder="placeholder"
+        :searchable-placeholder="placeholder"
+        :options="allIngredientsList?.map((ingredient) => ingredient.name) ?? []"
+        @update:model-value="filterIngredients(searchInputValue)"
+      />
+      <UButton
+        icon="i-heroicons-x-mark"
+        color="primary"
+        variant="solid"
+        v-model="searchInputValue"
+        :disabled="!searchInputValue"
+        @click="filterIngredients()"
+      />
+    </UButtonGroup>
 
     <!-- Add Input -->
-    <UButtonGroup v-if="showAddInput" class="w-full mb-3" orientation="horizontal">
+    <UButtonGroup v-if="showAddInput" class="w-full mb-2" orientation="horizontal">
       <UInput class="w-full" v-model="addInputValue" />
       <UButton
         label="Add Ingredient"
-        color="green"
+        color="primary"
         :disabled="!addInputValue"
         @click="db.ingredients.add({ name: addInputValue })"
       />
     </UButtonGroup>
-
-    <!-- <button @click="db.ingredients.add({ name: `test2` })">Add item</button> -->
 
     <ul v-if="ingredientsList" v-auto-animate>
       <li v-for="ingredient in ingredientsList" :key="ingredient.name">{{ ingredient.name }}</li>
