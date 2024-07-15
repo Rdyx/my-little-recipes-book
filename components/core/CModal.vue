@@ -1,10 +1,15 @@
 <script setup lang="ts">
-// type Props =
-const props = defineProps({
-  title: { type: String, default: '' },
-  disabledConfirm: Boolean,
-  cancelText: { type: String, default: 'Cancel' },
-  confirmText: { type: String, default: 'Confirm' }
+type Props = {
+  title: string
+  disabledConfirm?: boolean
+  cancelText?: string
+  confirmText?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  disabledConfirm: false,
+  cancelText: 'Cancel',
+  confirmText: 'Confirm'
 })
 const emit = defineEmits(['close', 'confirm'])
 
