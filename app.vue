@@ -1,11 +1,11 @@
-<script setup>
+<script setup lang="ts">
 const isSettingsMenuOpen = ref(false)
 </script>
 
 <template>
-  <div>
+  <UContainer class="w-full">
     <CoreNavBar @open-settings-menu="isSettingsMenuOpen = true" />
-    <SettingsMenu :is-open="isSettingsMenuOpen" @close="isSettingsMenuOpen = false" />
+    <SettingsSMenu :is-open="isSettingsMenuOpen" @close="isSettingsMenuOpen = false" />
 
     <!-- Toasts -->
     <UNotifications />
@@ -15,8 +15,8 @@ const isSettingsMenuOpen = ref(false)
     <CorePWA />
 
     <!-- Page Content -->
-    <div class="flex justify-center w-full">
-      <NuxtPage class="px-3 w-full md:px-0 md:w-3/4" />
-    </div>
-  </div>
+    <UContainer class="flex justify-center w-full h-[calc(100vh-56px)] overflow-auto">
+      <NuxtPage class="px-3 w-full md:px-0 md:w-3/4 flex flex-col" />
+    </UContainer>
+  </UContainer>
 </template>
