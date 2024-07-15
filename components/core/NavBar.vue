@@ -43,7 +43,6 @@ const links = [
     }
   ]
 ]
-console.log(isMenuOpen)
 </script>
 
 <template>
