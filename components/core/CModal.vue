@@ -1,8 +1,11 @@
 <script setup lang="ts">
-type Props = {
-  title: string
-}
-const props = defineProps<Props>()
+// type Props =
+const props = defineProps({
+  title: { type: String, default: '' },
+  disabledConfirm: Boolean,
+  cancelText: { type: String, default: 'Cancel' },
+  confirmText: { type: String, default: 'Confirm' }
+})
 const emit = defineEmits(['close', 'confirm'])
 
 const show = ref(true)
@@ -23,9 +26,11 @@ const show = ref(true)
         <slot name="actions">
           <div class="w-full flex justify-end">
             <UButton color="primary" variant="outline" class="me-3" @click="emit('close')">
-              Cancel
+              {{ props.cancelText }}
             </UButton>
-            <UButton color="primary" @click="emit('confirm')">Confirm</UButton>
+            <UButton color="primary" :disabled="props.disabledConfirm" @click="emit('confirm')">
+              {{ props.confirmText }}
+            </UButton>
           </div>
         </slot>
       </template>

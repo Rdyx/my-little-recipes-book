@@ -15,6 +15,7 @@ type Props = {
   isEditable?: boolean
   isDeletable?: boolean
   sort?: { column: string; direction: 'asc' | 'desc' }
+  ui?: {}
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['edit', 'delete'])
@@ -50,7 +51,7 @@ const shownRows = computed(() => {
 <template>
   <UContainer class="flex flex-col flex-1">
     <UTable
-      class="flex-1"
+      class="flex-1 justify-center"
       :loading="props.loading || !props.data.length"
       :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: 'Loading...' }"
       :sort="props.sort"
@@ -61,7 +62,9 @@ const shownRows = computed(() => {
         tr: {
           base: 'table w-full transition ease-linear duration-200 hover:bg-slate-800 hover:font-bold'
         },
-        td: { base: 'max-w-[0] truncate' }
+        td: { base: 'max-w-[0] truncate' },
+        // External customization, override key defaults if defined
+        ...props.ui
       }"
     >
       <template #actions-data="{ row }">
@@ -86,6 +89,7 @@ const shownRows = computed(() => {
 
     <!-- Pagination -->
     <UContainer
+      v-if="props.data.length"
       class="flex flex-wrap flex-0 justify-end md:justify-between items-center sticky bottom-0 z-10"
     >
       <UContainer>
@@ -100,8 +104,8 @@ const shownRows = computed(() => {
         </span>
       </UContainer>
 
-      <UContainer class="flex">
-        <UContainer class="flex items-center me-3 mt-2 mb-3">
+      <UContainer class="flex mt-2 mb-3">
+        <UContainer class="flex items-center me-3">
           <span class="text-sm me-2"> Rows per page: </span>
           <USelectMenu v-model="baseRowsPerPage" :options="options" />
         </UContainer>
